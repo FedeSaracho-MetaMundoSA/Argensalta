@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --animate-shine: shine 1.5s ease-in-out infinite;
+
+  @keyframes shine {
+    from {
+      left: -100%;
+    }
+    to {
+      left: 200%;
+    }
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.4), inset 0 0 15px rgba(239, 68, 68, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(239, 68, 68, 0.8), inset 0 0 25px rgba(239, 68, 68, 0.4);
+  }
+}
+
+@keyframes ribbonShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.sold-stamp {
+  border: 3px dashed #ef4444;
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+.sold-ribbon {
+  background: linear-gradient(135deg, #b91c1c 0%, #ef4444 25%, #f87171 50%, #ef4444 75%, #991b1b 100%);
+  background-size: 200% 200%;
+  animation: ribbonShimmer 3s ease infinite;
+}
+
+.gold-sold-ribbon {
+  background: linear-gradient(135deg, #854d0e 0%, #eab308 25%, #fef08a 50%, #eab308 75%, #713f12 100%);
+  background-size: 200% 200%;
+  animation: ribbonShimmer 3s ease infinite;
+}

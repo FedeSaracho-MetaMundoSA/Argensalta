@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Exclude backend admin screens
+Disallow: /admin/
+Disallow: /dashboard
+
+Sitemap: https://argensaltapropiedades.com.ar/sitemap.xml
