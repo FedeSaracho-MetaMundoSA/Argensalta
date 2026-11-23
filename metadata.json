@@ -1,0 +1,6 @@
+{
+  "name": "Argensalta Propiedades",
+  "description": "Una plataforma integral para Argensalta, agentes en Salta, bienes raíces, masterplan de urbanizaciones, con modelo 3D corporativo y posicionamiento SEO.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

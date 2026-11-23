@@ -1,0 +1,113 @@
+{
+  "entities": {
+    "users": {
+      "title": "User Profile",
+      "description": "User profile with role management",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "client"] },
+        "createdAt": { "type": "number" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["email", "name", "role", "createdAt", "updatedAt"]
+    },
+    "lots": {
+      "title": "Lot",
+      "description": "Information about a specific lot",
+      "type": "object",
+      "properties": {
+        "block": { "type": "string" },
+        "lotNumber": { "type": "string" },
+        "surface": { "type": "number" },
+        "price": { "type": "number" },
+        "status": { "type": "string", "enum": ["available", "reserved", "sold"] },
+        "clientId": { "type": "string", "description": "Optional, ID of the owner/client" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["block", "lotNumber", "surface", "price", "status", "createdAt"]
+    },
+    "payments": {
+      "title": "Payment",
+      "description": "Payment and installment records for a lot",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "lotId": { "type": "string" },
+        "amount": { "type": "number" },
+        "status": { "type": "string", "enum": ["pending", "paid", "overdue"] },
+        "dueDate": { "type": "number" },
+        "paidDate": { "type": "number" },
+        "installmentNumber": { "type": "number" },
+        "totalInstallments": { "type": "number" }
+      },
+      "required": ["userId", "lotId", "amount", "status", "dueDate", "installmentNumber", "totalInstallments"]
+    },
+    "inquiries": {
+      "title": "Consultation",
+      "description": "Custom inquiries from users",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "message": { "type": "string" },
+        "status": { "type": "string", "enum": ["open", "resolved"] },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["userId", "message", "status", "createdAt"]
+    },
+    "leads": {
+      "title": "CRM Leads",
+      "description": "External and internal leads captured for the CRM",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "message": { "type": "string" },
+        "source": { "type": "string" },
+        "status": { "type": "string", "enum": ["new", "contacted", "closed"] },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["name", "email", "phone", "status", "createdAt"]
+    },
+    "infrastructure": {
+      "title": "Infrastructure Progress",
+      "description": "Project progress stats (admin managed)",
+      "type": "object",
+      "properties": {
+        "category": { "type": "string" },
+        "name": { "type": "string" },
+        "progressPercentage": { "type": "number" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["category", "name", "progressPercentage", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": { "$ref": "#/entities/users" },
+      "description": "Global user profiles."
+    },
+    "lots/{lotId}": {
+      "schema": { "$ref": "#/entities/lots" },
+      "description": "Lots available in the project."
+    },
+    "payments/{paymentId}": {
+      "schema": { "$ref": "#/entities/payments" },
+      "description": "Payments belonging to lots and users."
+    },
+    "leads/{leadId}": {
+      "schema": { "$ref": "#/entities/leads" },
+      "description": "CRM leads captured from landing page and WordPress."
+    },
+    "inquiries/{inquiryId}": {
+      "schema": { "$ref": "#/entities/inquiries" },
+      "description": "Queries from users to admins."
+    },
+    "infrastructure/{infraId}": {
+      "schema": { "$ref": "#/entities/infrastructure" },
+      "description": "Global infrastructure details."
+    }
+  }
+}
